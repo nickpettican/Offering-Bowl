@@ -46,14 +46,15 @@ jobs:
         working-directory: server
         run: NODE_ENV=test npm run qc
 
-      - name: Coverage Report (server)
-        if: steps.filter.outputs.server == 'true'
-        uses: ArtiomTr/jest-coverage-report-action@v2
-        with:
-          working-directory: server
-          coverage-file: ./coverage/coverage-final.json
-          base-coverage-file: ./coverage/coverage-final.json
-          skip-step: all
+      # TODO finish implementation
+      # - name: Coverage Report (server)
+      #   if: steps.filter.outputs.server == 'true'
+      #   uses: ArtiomTr/jest-coverage-report-action@v2
+      #   with:
+      #     working-directory: server
+      #     coverage-file: ./coverage/coverage-final.json
+      #     base-coverage-file: ./coverage/coverage-final.json
+      #     skip-step: all
 
       # Client
       - name: Install Dependencies (client)
@@ -64,17 +65,17 @@ jobs:
       - name: Run Quality Assurance (client)
         if: steps.filter.outputs.client == 'true'
         working-directory: client
-        run: NODE_ENV=test npm run qc && ls -la coverage && cat coverage/coverage-summary.json
+        run: NODE_ENV=test npm run qc
 
-      - name: Coverage Report (client)
-        if: steps.filter.outputs.client == 'true'
-        uses: ArtiomTr/jest-coverage-report-action@v2
-        with:
-          working-directory: client
-          coverage-file: ./coverage/coverage-final.json
-          base-coverage-file: ./coverage/coverage-final.json
-          skip-step: all
-          threshold: 0
+      # TODO finish implementation
+      # - name: Coverage Report (client)
+      #   if: steps.filter.outputs.client == 'true'
+      #   uses: ArtiomTr/jest-coverage-report-action@v2
+      #   with:
+      #     working-directory: client
+      #     coverage-file: ./coverage/coverage-final.json
+      #     base-coverage-file: ./coverage/coverage-final.json
+      #     skip-step: all
 
   docker-deploy:
     name: Build and Deploy to Docker Hub
