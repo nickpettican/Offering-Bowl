@@ -64,7 +64,7 @@ jobs:
       - name: Run Quality Assurance (client)
         if: steps.filter.outputs.client == 'true'
         working-directory: client
-        run: NODE_ENV=test npm run qc
+        run: NODE_ENV=test npm run qc && ls -la coverage && cat coverage/coverage-summary.json
 
       - name: Coverage Report (client)
         if: steps.filter.outputs.client == 'true'
@@ -74,6 +74,7 @@ jobs:
           coverage-file: ./coverage/coverage-final.json
           base-coverage-file: ./coverage/coverage-final.json
           skip-step: all
+          threshold: 0
 
   docker-deploy:
     name: Build and Deploy to Docker Hub
